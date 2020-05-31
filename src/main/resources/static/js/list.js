@@ -1,0 +1,6 @@
+/**
+ *
+ */
+function aiueo(){
+   alert("アイウエオ");
+}

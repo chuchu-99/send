@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>キャラクター詳細</title>
+</head>
+<style>
+.col_name {width:200px;}
+    table {border-collapse: collapse;}
+    form {display: inline;}
+</style>
+<body>
+<h1>キャラクター詳細</h1>
+    <div th:each="obj : ${chara}">
+        <table border="1">
+            <tr>
+                <th class="col_charaName">キャラクター名</th>
+                <td name="charaName" th:text="${obj.charaName}" size="40"
+                       maxlength="20"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="col_charaGender">性別</th>
+                <td name="charaGender" th:text="${obj.charaGender}" size="10"
+                        maxlength="1"/>
+                </td>
+            </tr>
+            <span th:each="obj : ${data}">
+                <tr>
+                    <th class="col_charaGender">登場作品</th>
+                    <td name="titleName" th:text="${obj.titleName}" size="10"
+                            maxlength="15"/>
+                    </td>
+                </tr>
+            </span>
+            <tr>
+                <th class="col_mainWeaponOne">得意武器1</th>
+                <td name="mainWeaponOne" th:text="${obj.mainWeaponOne}" size="10"
+                        maxlength="4"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="col_mainWeaponTwo">得意武器2</th>
+                <td name="mainWeaponTwo" th:text="${obj.mainWeaponTwo}" size="10"
+                        maxlength="4"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="col_charaDetail">キャラ詳細</th>
+                <td name="charaDetail" th:text="${obj.charaDetail}" size="10"
+                        maxlength="150"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <form action="javascript:void(0)" onclick="javascript:history.back()">
+        <input type="submit" value="戻　る" />
+    </form>
+</body>
+</html>

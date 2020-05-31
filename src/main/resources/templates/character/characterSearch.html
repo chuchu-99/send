@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>キャラクター検索</title>
+</head>
+<style>
+.col_name {width:200px;}
+    table {border-collapse: collapse;}
+    form {display: inline;}
+</style>
+<body>
+    <h1>キャラクター検索</h1>
+     <form method="post" action="/buttonCharacterSearch" th:object="${chara}">
+    <table border="1">
+        <tr>
+            <th class="col_charaName">キャラクター名</th>
+        </tr>
+        <tr>
+            <td><input type="text" name="charaName" size="20"
+                        maxlength="20"/>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <input type="submit" value="検　索" />
+    </form>
+    <form action="javascript:void(0)" onclick="javascript:history.back()">
+        <input type="submit" value="戻　る" />
+    </form>
+</body>
+</html>

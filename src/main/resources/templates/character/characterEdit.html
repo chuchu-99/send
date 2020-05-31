@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>キャラクター編集</title>
+</head>
+<style>
+.col_name {width:200px;}
+    table {border-collapse: collapse;}
+    form {display: inline;}
+</style>
+<body>
+    <div th:each="obj : ${data}">
+        <h1 th:text="${obj.titleName}"></h1>
+        <form method="post" action="/create" th:object="${chara}">
+        <table border="1">
+            <tr>
+                <th class="col_charaName">キャラクター名</th>
+                <td><input type="text" name="charaName" size="20" th:value="*{charaName}"
+                            maxlength="20"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="col_charaGender">性別</th>
+                <td><input type="text" name="charaGender" size="20" th:value="*{charaGender}"
+                        minlength="1" maxlength="1"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="col_charaGender">登場作品</th>
+                <td name="titleName" th:text="${obj.titleName}" size="40"
+                    maxlength="20"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="col_charaContent">キャラクター内容</th>
+                <td><input type="text" name="charaContent" size="20" th:value="*{charaContent}"
+                         maxlength="20"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="col_mainWeaponOne">得意武器1</th>
+                <td><input type="text" name="mainWeaponOne" size="20" th:value="*{mainWeaponOne}"
+                         maxlength="20"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="col_mainWeaponTwo">得意武器2</th>
+                <td><input type="text" name="mainWeaponTwo" size="20" th:value="*{mainWeaponTwo}"
+                         maxlength="20"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="col_charaDetail">キャラクター詳細</th>
+                <td><textarea name="charaDetail" size="20" th:text="*{charaDetail}"
+                         maxlength="100"/></textarea>
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <input type="submit" value="追　加" />
+        <input type="hidden" name="titleNo" th:value="${obj.id}">
+        </form>
+        <form action="javascript:void(0)" onclick="javascript:history.back()">
+            <input type="submit" value="戻　る" />
+            <input type="hidden" name="id"  th:value="${obj.id}">
+        </form>
+    </div>
+</body>
+</html>

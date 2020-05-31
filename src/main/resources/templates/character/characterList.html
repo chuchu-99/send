@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>内容確認</title>
+<style>
+table {
+    border-collapse: collapse;
+}
+.col_charaName {
+    width:200px;
+}
+.col_charaGender {
+    width:40px;
+    text-align: center;
+}
+.col_charaContent {
+    width:400px;
+}
+form {display: inline;}
+td{text-align: center;}
+</style>
+
+</head>
+<body>
+    <!-- divで囲まれている箇所はdivで指定しているオブジェクトの
+    ID等々使用可能。
+    別のオブジェクトを参照したい場合※2を参照
+    -->
+    <div th:each="obj : ${data}">
+        <h1  th:text="${obj.titleName}"></h1>
+        <table border="1">
+            <tr>
+                <th class="col_charaName">キャラクター名</th>
+                <th class="col_charaGender">性別</th>
+                <th class="col_charaContent">キャラ内容</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <!-- ※2
+            おそらくcharaオブジェクトを優先して参照
+            現にidを表示させるとキャラIDが表示されている。
+            タイトルのIDとキャラのIDの名前分けるべきだった-->
+            <tr th:each="obj : ${chara}">
+                <td name="charaName" th:text="${obj.charaName}" size="40"
+                    maxlength="20"/>
+                </td>
+                <td name="charaGender" th:text="${obj.charaGender}" size="10"
+                    maxlength="1"/>
+                </td>
+                <td name="charaContent" th:text="${obj.charaContent}" size="40"
+                    maxlength="80"/>
+                </td>
+                <td>
+                    <form action = "/characterDetail">
+                        <input type="submit" value="詳　細" />
+                        <input type="hidden" name="id"  th:value="${obj.id}">
+                    </form>
+                </td>
+                <td>
+                    <form action = "/characterEdit">
+                        <input type="submit" value="編　集" />
+                        <input type="hidden" name="id"  th:value="${obj.id}">
+                    </form>
+                </td>
+            </tr>
+		</table>
+		<hr>
+        <form action="characterAdd" th:each="obj : ${data}" method="get">
+            <input type="submit" value="登場人物追加" />
+            <input type="hidden" name="id"  th:value="${obj.id}">
+        </form>
+        <form action="/list">
+            <input type="submit" value="戻　る" />
+        </form>
+    </div>
+</body>
+</html>

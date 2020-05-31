@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>遊び</title>
+<style>
+table {
+  border-collapse: collapse;
+}
+.col_name {width: 300px;}
+.col_address {width: 500px;}
+.col_tel {width: 200px;}
+form {display: inline;}
+</style>
+<!-- JS読み込めてません -->
+<script type="text/javascript" th:src="@{/js/list.js}"></script>
+</head>
+<body>
+<h1>お気に入りのゲームについて</h1>
+<table border="1">
+    <tr>
+        <th class="col_name">名前</th>
+        <th></th>
+    </tr>
+    <tr th:each="obj : ${data}">
+        <td th:text="${obj.titleName}"></td>
+        <td>
+            <form action="/edit" method="get">
+                <input type="submit" value="内容確認">
+                <input type="hidden" name="id" th:value="${obj.id}">
+            </form>
+        </td>
+    </tr>
+</table>
+<hr>
+<!-- 未完成（ファイル読み込み） -->
+<form action="/reading">
+    <input type="submit" value="ファイル読み込み" />
+</form>
+<form action="/titleAdd">
+    <input type="submit" value="タイトル追加" />
+</form>
+<form action="/characterSearch">
+    <input type="submit" value="キャラ検索" />
+</form>
+</body>
+</html>
