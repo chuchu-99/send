@@ -4,10 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
@@ -27,7 +27,6 @@ public class FavoriteController {
     private CharacterService characterService;
 
 /*=====初期画面の遷移処理=====*/
-    /*一覧画面への遷移*/
     @GetMapping()
     public ModelAndView list() {
         ModelAndView mav = new ModelAndView();
@@ -47,7 +46,6 @@ public class FavoriteController {
         Title data = titleService.findById(id);
 //        List<Character> charaList = characterService.searchByCharaName("リ");
         //　IDに応じたキャラ名を抽出
-        //　SQLを実装してタイトルNoに応じたキャラ名を抽出予定
         List<Character> charaList = characterService.findByTitleNo(id);
         mav.addObject("data",data);
         mav.addObject("chara",charaList);
@@ -74,11 +72,6 @@ public class FavoriteController {
 
     /*=====ボタン押下時等々の処理=====*/
 
-    /*読み込み画面に遷移する
-     * 遷移した画面でファイルのリンクの文字列を取得（JSか何かで）
-     * それをControllerに渡して、変数の中に代入でいけないかな？
-     * でも現状指定しているパスがstaticフォルダから指定しているから難しいかも
-     * */
     /*CSVファイル読み込み処理*/
     @SuppressWarnings("finally")
 	@GetMapping("/reading")
@@ -174,7 +167,7 @@ public class FavoriteController {
         return mav;
     }
 
-    /*追加処理*/
+    /*キャラクター内容追加・変更処理*/
     @PostMapping("/create")
     @Transactional(readOnly=false)
     public ModelAndView create(
