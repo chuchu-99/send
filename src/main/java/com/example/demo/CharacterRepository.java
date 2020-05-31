@@ -1,7 +1,5 @@
 package com.example.demo;
 
-import com.example.demo.Character;
-
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,7 +11,7 @@ public interface CharacterRepository extends JpaRepository<Character, Integer>{
 	public List<Character> findByTitleNo(int id);
 	public Character deleteById(int id);
 //	FROM句に記載する抽出先はCharacter.Javaのname欄で記載したもの
-//	?1で取得してきていると思われる
+//	変数の値は?1で取得してきている。
 //	?の数字の後は引数の順番に応じて変化（2番目なら?2）
 //	camelCase記法ではなくsnake_case記法でSQL文を記載
 //	TableのほうでcamelCase記法で記載していてもsnake_case記法
