@@ -36,11 +36,8 @@ td{text-align: center;}
                 <th class="col_charaContent">キャラ内容</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
-            <!-- ※2
-            おそらくcharaオブジェクトを優先して参照
-            現にidを表示させるとキャラIDが表示されている。
-            タイトルのIDとキャラのIDの名前分けるべきだった-->
             <tr th:each="obj : ${chara}">
                 <td name="charaName" th:text="${obj.charaName}" size="40"
                     maxlength="20"/>
@@ -63,6 +60,12 @@ td{text-align: center;}
                         <input type="hidden" name="id"  th:value="${obj.id}">
                     </form>
                 </td>
+                <td>
+                    <form action = "/characterDelete">
+                        <input type="submit" value="削　除" />
+                        <input type="hidden" name="id"  th:value="${obj.id}">
+                    </form>
+                </td>
             </tr>
 		</table>
 		<hr>
@@ -70,7 +73,7 @@ td{text-align: center;}
             <input type="submit" value="登場人物追加" />
             <input type="hidden" name="id"  th:value="${obj.id}">
         </form>
-        <form action="/list">
+        <form action="javascript:void(0)" onclick="javascript:history.back()">
             <input type="submit" value="戻　る" />
         </form>
     </div>

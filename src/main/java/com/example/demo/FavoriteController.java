@@ -133,11 +133,10 @@ public class FavoriteController {
     	return mav;
     }
 
-    /*削除処理*/
-    @PostMapping("/delete")
+    /*キャラクター削除処理*/
+    @PostMapping("/characterDelete")
     @Transactional(readOnly=false)
     public ModelAndView delete(@RequestParam int id) {
-    	titleService.deleteById(id);
         characterService.deleteById(id);
         return new ModelAndView("redirect:title/titleList");
     }
